@@ -18,7 +18,7 @@ public class Application {
     public static void main(final String[] args) {
         System.setProperty("java.util.logging.SimpleFormatter.format", "%4$s: %5$s%n");
 
-        var paymentsConfiguration = new PaymentsConfiguration();
+        /*var paymentsConfiguration = new PaymentsConfiguration();
         var addCardUseCase = paymentsConfiguration.addCardUseCase();
         var addTransactionUseCase = paymentsConfiguration.addTransactionUseCase();
         var getCardsUseCase = paymentsConfiguration.getCardsUseCase();
@@ -37,7 +37,7 @@ public class Application {
 
         getCardUseCase.handle(cardNumber)
                 .getTransactions()
-                .forEach(t -> LOGGER.info(t.toString()));
+                .forEach(t -> LOGGER.info(t.toString()));*/
     }
 
 }
