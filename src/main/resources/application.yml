@@ -1,0 +1,19 @@
+spring:
+  jpa:
+    open-in-view: false
+    generate-ddl: true
+  datasource:
+    username: admin
+    password: admin
+    url: jdbc:postgresql://localhost:5432/payments
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 5
+  messages:
+    basename: exceptions
+  security:
+    user:
+      name: admin
+      password: $2a$10$g28wukm5E3PjIMPR1mTgfek8GOU2V/hTM4MmZBp.Vx30WsrpAcY8W
+      roles: ADMIN
+card-number-length: 16

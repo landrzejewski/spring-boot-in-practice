@@ -1,31 +1,37 @@
 package pl.fullstackdeveloper.payments;
 
-import pl.fullstackdeveloper.payments.adapters.*;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import pl.fullstackdeveloper.payments.application.*;
 
+@Configuration
 public class PaymentsConfiguration {
 
-    private final CardRepository cardRepository = new HashMapCardRepository();
-    // private final CardNumberGenerator cardNumberGenerator = new SequentialCardNumberGenerator(16);
-    private final CardNumberGenerator cardNumberGenerator = new RandomCardNumberGenerator(16);
-    private final DateTimeProvider dateTimeProvider = new SystemDateTimeProvider();
-    private final TransactionEventPublisher transactionEventPublisher = new ConsoleTransactionEventPublisher();
-
-    public AddCardUseCase addCardUseCase() {
+    @Bean
+    public AddCardUseCase addCardUseCase(CardNumberGenerator cardNumberGenerator, DateTimeProvider dateTimeProvider, CardRepository cardRepository) {
         return new AddCardUseCase(cardNumberGenerator, dateTimeProvider, cardRepository);
     }
 
-    public GetCardsUseCase getCardsUseCase() {
+    @Bean
+    public GetCardsUseCase getCardsUseCase(CardRepository cardRepository) {
         return new GetCardsUseCase(cardRepository);
     }
 
-    public GetCardUseCase getCardUseCase() {
+    @Bean
+    public GetCardUseCase getCardUseCase(CardRepository cardRepository) {
         return new GetCardUseCase(cardRepository);
     }
 
-    public AddTransactionUseCase addTransactionUseCase() {
-        // return new AddTransactionUseCase(dateTimeProvider, transactionEventPublisher, cardRepository);
-        return new AddTransactionLoggingProxy(dateTimeProvider, transactionEventPublisher, cardRepository);
+    @Bean
+    public AddTransactionUseCase addTransactionUseCase(DateTimeProvider dateTimeProvider, TransactionEventPublisher transactionEventPublisher, CardRepository cardRepository) {
+        return new AddTransactionUseCase(dateTimeProvider, transactionEventPublisher, cardRepository);
     }
+
+    /*@Bean
+    public Advisor cacheAdvisor(CacheAspect cacheAspect) {
+        var pointcut = new AspectJExpressionPointcut();
+        pointcut.setExpression("execution(pl.training.payments.domain.Card pl.training.payments.application.GetCardService.getCard(pl.training.payments.domain.CardNumber))");
+        return new DefaultPointcutAdvisor(pointcut, cacheAspect);
+    }*/
 
 }
