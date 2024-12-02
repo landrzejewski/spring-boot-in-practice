@@ -15,7 +15,7 @@ public class AddCardServiceAdapter implements AddCardUseCase {
 
     @Override
     public String handle(final Currency currency) {
-        return addCardService.handle(currency).getId().value().toString();
+        return addCardService.handle(currency).getNumber().value();
     }
 
 }
