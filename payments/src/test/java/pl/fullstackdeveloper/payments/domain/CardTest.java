@@ -1,11 +1,10 @@
 package pl.fullstackdeveloper.payments.domain;
 
 import org.junit.jupiter.api.Test;
-import pl.fullstackdeveloper.payments.CardTestFixtures;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static pl.fullstackdeveloper.payments.CardTestFixtures.*;
+import static pl.fullstackdeveloper.payments.domain.CardTestFixtures.*;
 import static pl.fullstackdeveloper.payments.domain.TransactionType.INFLOW;
 import static pl.fullstackdeveloper.payments.domain.TransactionType.PAYMENT;
 
