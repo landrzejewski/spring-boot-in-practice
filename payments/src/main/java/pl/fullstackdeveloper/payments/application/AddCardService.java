@@ -1,12 +1,15 @@
 package pl.fullstackdeveloper.payments.application;
 
+import pl.fullstackdeveloper.payments.output.CardNumberGenerator;
+import pl.fullstackdeveloper.payments.output.CardRepository;
+import pl.fullstackdeveloper.payments.output.DateTimeProvider;
 import pl.fullstackdeveloper.payments.domain.Card;
 import pl.fullstackdeveloper.payments.domain.CardId;
 
 import java.time.LocalDate;
 import java.util.Currency;
 
-public class AddCardUseCase {
+public class AddCardService {
 
     private static final int EXPIRATION_TIME_IN_YEARS = 1;
 
@@ -14,7 +17,7 @@ public class AddCardUseCase {
     private final DateTimeProvider dateTimeProvider;
     private final CardRepository cardRepository;
 
-    public AddCardUseCase(final CardNumberGenerator cardNumberGenerator,
+    public AddCardService(final CardNumberGenerator cardNumberGenerator,
                           final DateTimeProvider dateTimeProvider,
                           final CardRepository cardRepository) {
         this.cardNumberGenerator = cardNumberGenerator;

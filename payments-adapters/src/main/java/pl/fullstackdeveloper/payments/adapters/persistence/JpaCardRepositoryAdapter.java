@@ -3,7 +3,7 @@ package pl.fullstackdeveloper.payments.adapters.persistence;
 import pl.fullstackdeveloper.common.PageSpec;
 import pl.fullstackdeveloper.common.ResultPage;
 import pl.fullstackdeveloper.payments.adapters.common.annotations.Adapter;
-import pl.fullstackdeveloper.payments.application.CardRepository;
+import pl.fullstackdeveloper.payments.output.CardRepository;
 import pl.fullstackdeveloper.payments.domain.Card;
 import pl.fullstackdeveloper.payments.domain.CardNumber;
 

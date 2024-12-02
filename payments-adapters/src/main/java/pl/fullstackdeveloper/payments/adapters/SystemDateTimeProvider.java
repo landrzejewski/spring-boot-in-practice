@@ -1,7 +1,7 @@
 package pl.fullstackdeveloper.payments.adapters;
 
 import pl.fullstackdeveloper.payments.adapters.common.annotations.Adapter;
-import pl.fullstackdeveloper.payments.application.DateTimeProvider;
+import pl.fullstackdeveloper.payments.output.DateTimeProvider;
 
 import java.time.ZonedDateTime;
 

@@ -2,7 +2,7 @@ package pl.fullstackdeveloper.payments.adapters;
 
 import pl.fullstackdeveloper.payments.adapters.common.annotations.Adapter;
 import pl.fullstackdeveloper.payments.application.TransactionAdded;
-import pl.fullstackdeveloper.payments.application.TransactionEventPublisher;
+import pl.fullstackdeveloper.payments.output.TransactionEventPublisher;
 
 import java.util.logging.Logger;
 

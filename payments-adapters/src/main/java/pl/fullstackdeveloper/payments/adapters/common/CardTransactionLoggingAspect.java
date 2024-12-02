@@ -18,7 +18,7 @@ public final class CardTransactionLoggingAspect {
     private static final Logger LOGGER = Logger.getLogger(CardTransactionLoggingAspect.class.getName());
 
     //@Pointcut("@annotation(pl.fullstackdeveloper.common.annotations.EnableLogging)")
-    @Pointcut("execution(void pl.fullstackdeveloper.payments.application.AddTransactionUseCase.handle(pl.fullstackdeveloper.payments.domain.CardNumber, pl.fullstackdeveloper.common.Money, pl.fullstackdeveloper.payments.domain.TransactionType))")
+    @Pointcut("execution(void pl.fullstackdeveloper.payments.application.AddTransactionService.handle(pl.fullstackdeveloper.payments.domain.CardNumber, pl.fullstackdeveloper.common.Money, pl.fullstackdeveloper.payments.domain.TransactionType))")
     public void transaction() {
     }
 

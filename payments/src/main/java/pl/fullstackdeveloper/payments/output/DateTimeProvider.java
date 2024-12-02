@@ -1,4 +1,4 @@
-package pl.fullstackdeveloper.payments.application;
+package pl.fullstackdeveloper.payments.output;
 
 import java.time.ZonedDateTime;
 

@@ -2,7 +2,7 @@ package pl.fullstackdeveloper.payments.adapters;
 
 import org.springframework.beans.factory.annotation.Value;
 import pl.fullstackdeveloper.payments.adapters.common.annotations.Adapter;
-import pl.fullstackdeveloper.payments.application.CardNumberGenerator;
+import pl.fullstackdeveloper.payments.output.CardNumberGenerator;
 import pl.fullstackdeveloper.payments.domain.CardNumber;
 
 import java.util.Random;

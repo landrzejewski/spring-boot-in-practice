@@ -10,37 +10,30 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import pl.fullstackdeveloper.common.Money;
-import pl.fullstackdeveloper.payments.application.AddTransactionUseCase;
-import pl.fullstackdeveloper.payments.domain.CardNumber;
-import pl.fullstackdeveloper.payments.domain.TransactionType;
+import pl.fullstackdeveloper.payments.AddCardTransactionUseCase;
+import pl.fullstackdeveloper.payments.CardTransactionType;
 
-import static pl.fullstackdeveloper.payments.domain.TransactionType.INFLOW;
-import static pl.fullstackdeveloper.payments.domain.TransactionType.PAYMENT;
+import static pl.fullstackdeveloper.payments.CardTransactionType.INFLOW;
+import static pl.fullstackdeveloper.payments.CardTransactionType.PAYMENT;
 
 @RestController
 final class AddCardTransactionRestController {
 
-    private final AddTransactionUseCase addTransactionUseCase;
+    private final AddCardTransactionUseCase addCardTransactionUseCase;
 
-    AddCardTransactionRestController(final AddTransactionUseCase addTransactionUseCase) {
-        this.addTransactionUseCase = addTransactionUseCase;
+    AddCardTransactionRestController(AddCardTransactionUseCase addCardTransactionUseCase) {
+        this.addCardTransactionUseCase = addCardTransactionUseCase;
     }
 
     @PostMapping("api/cards/{number:\\d{16,19}}/transactions")
     ResponseEntity<Void> addCardTransaction(
             @PathVariable final String number,
             @Validated @RequestBody final AddCardTransactionRequest addCardTransactionRequest) {
-        var cardNumber = new CardNumber(number);
         var amount = addCardTransactionRequest.money();
         var transactionType = addCardTransactionRequest.transactionType();
-        addTransactionUseCase.handle(cardNumber, amount, transactionType);
+        addCardTransactionUseCase.handle(number, amount, transactionType);
         return ResponseEntity.noContent().build();
     }
-
-    /*@ExceptionHandler(CardNotFoundException.class)
-    ResponseEntity<ExceptionDto> onCardNotFoundException(final CardNotFoundException exception) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ExceptionDto("Card not found"));
-    }*/
 
 }
 
@@ -52,7 +45,7 @@ record AddCardTransactionRequest(@Min(100) Double amount,
         return new Money(amount, currencyCode);
     }
 
-    TransactionType transactionType() {
+    CardTransactionType transactionType() {
         return switch (type) {
             case "IN" -> INFLOW;
             case "OUT" -> PAYMENT;

@@ -31,7 +31,7 @@ import static pl.fullstackdeveloper.payments.CardTestFixtures.TEST_MONEY;
 @SpringBootTest(classes = Application.class, webEnvironment = DEFINED_PORT)
 @AutoConfigureMockMvc
 @ExtendWith(SpringExtension.class)
-class AddTransactionUseCaseTest {
+class AddTransactionServiceTest {
 
     private static final String CARD_NUMBER = TEST_CARD_NUMBER.value();
     private static final String INFLOW_PAYLOAD = """

@@ -2,13 +2,14 @@ package pl.fullstackdeveloper.payments.application;
 
 import pl.fullstackdeveloper.common.PageSpec;
 import pl.fullstackdeveloper.common.ResultPage;
+import pl.fullstackdeveloper.payments.output.CardRepository;
 import pl.fullstackdeveloper.payments.domain.Card;
 
-public class GetCardsUseCase {
+public class GetCardsService {
 
     private final CardRepository cardRepository;
 
-    public GetCardsUseCase(final CardRepository cardRepository) {
+    public GetCardsService(final CardRepository cardRepository) {
         this.cardRepository = cardRepository;
     }
 

@@ -1,18 +1,20 @@
 package pl.fullstackdeveloper.payments.application;
 
 import pl.fullstackdeveloper.common.Money;
-import pl.fullstackdeveloper.common.annotations.EnableLogging;
+import pl.fullstackdeveloper.payments.output.CardRepository;
+import pl.fullstackdeveloper.payments.output.DateTimeProvider;
+import pl.fullstackdeveloper.payments.output.TransactionEventPublisher;
 import pl.fullstackdeveloper.payments.domain.*;
 
 import java.util.function.Consumer;
 
-public class AddTransactionUseCase {
+public class AddTransactionService {
 
     private final DateTimeProvider dateTimeProvider;
     private final TransactionEventPublisher transactionEventPublisher;
     private final CardRepository cardRepository;
 
-    public AddTransactionUseCase(final DateTimeProvider dateTimeProvider,
+    public AddTransactionService(final DateTimeProvider dateTimeProvider,
                                  final TransactionEventPublisher transactionEventPublisher,
                                  final CardRepository cardRepository) {
         this.dateTimeProvider = dateTimeProvider;

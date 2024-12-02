@@ -21,6 +21,7 @@
         <module>common</module>
         <module>payments</module>
         <module>payments-adapters</module>
+        <module>payments-contracts</module>
     </modules>
 
 </project>

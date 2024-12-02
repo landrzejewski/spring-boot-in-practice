@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import pl.fullstackdeveloper.common.PageSpec;
 import pl.fullstackdeveloper.common.ResultPage;
-import pl.fullstackdeveloper.payments.application.GetCardsUseCase;
-import pl.fullstackdeveloper.payments.domain.Card;
+import pl.fullstackdeveloper.payments.CardInfo;
+import pl.fullstackdeveloper.payments.GetCardsUseCase;
 
 import java.time.LocalDate;
 
@@ -16,7 +16,7 @@ final class GetCardsRestController {
 
     private final GetCardsUseCase getCardsUseCase;
 
-    GetCardsRestController(final GetCardsUseCase getCardsUseCase) {
+    public GetCardsRestController(GetCardsUseCase getCardsUseCase) {
         this.getCardsUseCase = getCardsUseCase;
     }
 
@@ -33,8 +33,13 @@ final class GetCardsRestController {
 
 record GetCardsResponse(String number, LocalDate expiration, Double balance, String currencyCode) {
 
-    static GetCardsResponse from(Card card) {
-        return new GetCardsResponse(card.getNumber().value(), card.getExpiration(), card.getBalance().amount().doubleValue(), card.getCurrency().getCurrencyCode());
+    static GetCardsResponse from(CardInfo cardInfo) {
+        return new GetCardsResponse(
+                cardInfo.number(),
+                cardInfo.expiration(),
+                cardInfo.balance().amount().doubleValue(),
+                cardInfo.currency().getCurrencyCode()
+        );
     }
 
 }
