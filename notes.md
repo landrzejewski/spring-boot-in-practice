@@ -30,4 +30,8 @@ select new pl.training.blog.application.ArticleView(a.id, a.title, a.author) fro
 
 findByCategoryAndTags:  
 select new pl.training.blog.application.ArticleView(a.id, a.title, a.author) from Articles a join a.tags t where a.category = :category and t.name in :tags group by a having count (a) = :count
-  
+
+
+https://leanpub.com/maws
+https://github.com/odrotbohm/spring-modulith-deep-dive
+https://reflectoring.io/book/
