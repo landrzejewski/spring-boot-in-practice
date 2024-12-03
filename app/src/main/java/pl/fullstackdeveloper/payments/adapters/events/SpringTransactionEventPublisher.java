@@ -21,7 +21,7 @@ final class SpringTransactionEventPublisher implements TransactionEventPublisher
     @Override
     public void publish(final TransactionAdded transactionAdded) {
         LOGGER.info("New %s transaction on card %s".formatted(transactionAdded.transactionType(), transactionAdded.cardNumber()));
-        var transactionConfirmed = new TransactionConfirmed(this, transactionAdded.cardNumber(), transactionAdded.cardNumber());
+        var transactionConfirmed = new TransactionConfirmed(this, transactionAdded.cardNumber(), transactionAdded.transactionId());
         applicationEventPublisher.publishEvent(transactionConfirmed);
     }
 
