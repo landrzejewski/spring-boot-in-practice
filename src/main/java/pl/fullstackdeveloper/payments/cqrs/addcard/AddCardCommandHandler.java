@@ -17,7 +17,7 @@ public class AddCardCommandHandler implements CommandHandler<AddCardResult, AddC
 
     @Override
     public AddCardResult handle(AddCardCommand command) {
-        var currency = Currency.getInstance(command.getCurrencyCode());
+        var currency = Currency.getInstance(command.currencyCode());
         var card = addCardUseCase.handle(currency);
         return new AddCardResult(card.getNumber().value(), card.getExpiration());
     }

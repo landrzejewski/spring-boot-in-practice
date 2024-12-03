@@ -21,8 +21,7 @@ final class GetCardRestController {
 
     @GetMapping("{number:\\d{16,19}}")
     ResponseEntity<CardProjection> getCard(@PathVariable final String number) {
-        var query = new GetCardQuery();
-        query.setCardNumber(number);
+        var query = new GetCardQuery(number);
         bus.executeQuery(query);
         return ResponseEntity.ok(bus.executeQuery(query));
     }

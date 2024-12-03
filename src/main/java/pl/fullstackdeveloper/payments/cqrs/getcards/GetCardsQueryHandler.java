@@ -18,7 +18,7 @@ public class GetCardsQueryHandler implements QueryHandler<ResultPage<CardsProjec
 
     @Override
     public ResultPage<CardsProjection> handle(GetCardsQuery query) {
-        var pageSpec = new PageSpec(query.getPageNumber(), query.getPageSize());
+        var pageSpec = new PageSpec(query.pageNumber(), query.pageSize());
         var cardPage = cardRepository.findAll(pageSpec);
         return cardPage.map(this::fromCard);
     }

@@ -18,7 +18,7 @@ public class GetCardQueryHandler implements QueryHandler<CardProjection, GetCard
 
     @Override
     public CardProjection handle(GetCardQuery query) {
-        var cardNumber = new CardNumber(query.getCardNumber());
+        var cardNumber = new CardNumber(query.cardNumber());
         var card = cardRepository.findByNumber(cardNumber)
                 .orElseThrow(CardNotFoundException::new);
         return fromCard(card);

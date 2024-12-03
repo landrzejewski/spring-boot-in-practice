@@ -22,7 +22,7 @@ final class AddCardRestController {
     @PostMapping("api/cards")
     ResponseEntity<AddCardResult> addCard(@Validated @RequestBody final AddCardCommand command) {
         var result = bus.executeCommand(command);
-        var locationUri = LocationUri.fromRequest(result.getNumber());
+        var locationUri = LocationUri.fromRequest(result.number());
         return ResponseEntity.created(locationUri).body(result);
     }
 

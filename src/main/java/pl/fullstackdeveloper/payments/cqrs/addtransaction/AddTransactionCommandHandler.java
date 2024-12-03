@@ -20,12 +20,12 @@ public class AddTransactionCommandHandler implements CommandHandler<AddTransacti
 
     @Override
     public AddTransactionResult handle(AddTransactionCommand command) {
-        var cardNumber = new CardNumber(command.getCardNumber());
-        var amount = new Money(command.getAmount(), command.getCurrencyCode());
-        var transactionType = switch (command.getType()) {
+        var cardNumber = new CardNumber(command.cardNumber());
+        var amount = new Money(command.amount(), command.currencyCode());
+        var transactionType = switch (command.type()) {
             case "IN" -> INFLOW;
             case "OUT" -> PAYMENT;
-            default -> throw new IllegalStateException("Unexpected value: " + command.getType());
+            default -> throw new IllegalStateException("Unexpected value: " + command.type());
         };
         var transactionId = addTransactionUseCase.handle(cardNumber, amount, transactionType);
         return new AddTransactionResult(transactionId.toString());

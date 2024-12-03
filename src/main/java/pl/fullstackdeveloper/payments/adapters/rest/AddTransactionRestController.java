@@ -22,8 +22,7 @@ final class AddTransactionRestController {
     ResponseEntity<Void> addCardTransaction(
             @PathVariable final String number,
             @Validated @RequestBody final AddTransactionCommand command) {
-        command.setCardNumber(number);
-        bus.executeCommand(command);
+        bus.executeCommand(command.with(number));
         return ResponseEntity.noContent().build();
     }
 
