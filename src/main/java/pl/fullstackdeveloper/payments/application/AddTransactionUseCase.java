@@ -19,7 +19,7 @@ public class AddTransactionUseCase {
         this.cardRepository = cardRepository;
     }
 
-    public void handle(final CardNumber cardNumber, final Money value, final TransactionType transactionType) {
+    public TransactionId handle(final CardNumber cardNumber, final Money value, final TransactionType transactionType) {
         var card = findCard(cardNumber);
         var transaction = createTransaction(value, transactionType);
         var cardEventListener = createCardEventListener();
@@ -27,6 +27,7 @@ public class AddTransactionUseCase {
         card.registerTransaction(transaction);
         card.removeEventListener(cardEventListener);
         cardRepository.save(card);
+        return transaction.id();
     }
 
     private Card findCard(final CardNumber cardNumber) {
