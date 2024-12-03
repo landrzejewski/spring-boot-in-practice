@@ -2,7 +2,10 @@ package pl.fullstackdeveloper.payments;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import pl.fullstackdeveloper.payments.application.*;
+import pl.fullstackdeveloper.payments.infrastructure.events.TransactionEventPublisher;
+import pl.fullstackdeveloper.payments.infrastructure.persistence.CardRepository;
+import pl.fullstackdeveloper.payments.infrastructure.time.DateTimeProvider;
+import pl.fullstackdeveloper.payments.internal.CardNumberGenerator;
 
 @Configuration
 public class PaymentsConfiguration {
