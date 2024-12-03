@@ -1,11 +1,13 @@
 package pl.fullstackdeveloper.payments.application;
 
+import pl.fullstackdeveloper.common.annotations.Atomic;
 import pl.fullstackdeveloper.payments.domain.Card;
 import pl.fullstackdeveloper.payments.domain.CardId;
 
 import java.time.LocalDate;
 import java.util.Currency;
 
+@Atomic
 public class AddCardUseCase {
 
     private static final int EXPIRATION_TIME_IN_YEARS = 1;
@@ -22,6 +24,7 @@ public class AddCardUseCase {
         this.cardRepository = cardRepository;
     }
 
+    //@Atomic
     public Card handle(final Currency currency) {
         var card = createCard(currency);
         return cardRepository.save(card);

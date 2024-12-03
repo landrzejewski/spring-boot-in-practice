@@ -1,5 +1,7 @@
 package pl.fullstackdeveloper.payments.adapters.persistence;
 
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import pl.fullstackdeveloper.common.PageSpec;
 import pl.fullstackdeveloper.common.ResultPage;
 import pl.fullstackdeveloper.payments.adapters.common.annotations.Adapter;
@@ -9,8 +11,9 @@ import pl.fullstackdeveloper.payments.domain.CardNumber;
 
 import java.util.Optional;
 
+@Transactional(propagation = Propagation.MANDATORY)
 @Adapter
-final class JpaCardRepositoryAdapter implements CardRepository {
+ class JpaCardRepositoryAdapter implements CardRepository {
 
     private final JpaCardRepository repository;
     private final JpaCardRepositoryMapper mapper;
