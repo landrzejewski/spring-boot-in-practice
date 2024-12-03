@@ -7,10 +7,10 @@ public class PlaceOrderUseCase {
 
     private static final Logger LOGGER = Logger.getLogger(PlaceOrderUseCase.class.getName());
 
-    private final PaymentsApi paymentsApi;
+    private final Payments paymentsApi;
 
-    public PlaceOrderUseCase(PaymentsApi paymentsApi) {
-        this.paymentsApi = paymentsApi;
+    public PlaceOrderUseCase(Payments payments) {
+        this.paymentsApi = payments;
     }
 
     public void handle(String orderDetails) {

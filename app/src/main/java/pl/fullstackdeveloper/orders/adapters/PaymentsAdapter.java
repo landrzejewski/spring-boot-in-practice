@@ -2,7 +2,7 @@ package pl.fullstackdeveloper.orders.adapters;
 
 import pl.fullstackdeveloper.common.Money;
 import pl.fullstackdeveloper.orders.application.PaymentDetails;
-import pl.fullstackdeveloper.orders.application.PaymentsApi;
+import pl.fullstackdeveloper.orders.application.Payments;
 import pl.fullstackdeveloper.payments.adapters.common.annotations.Adapter;
 import pl.fullstackdeveloper.payments.application.AddTransactionUseCase;
 import pl.fullstackdeveloper.payments.domain.CardNumber;
@@ -12,11 +12,11 @@ import java.util.Currency;
 import static pl.fullstackdeveloper.payments.domain.TransactionType.PAYMENT;
 
 @Adapter
-public class PaymentsApiAdapter implements PaymentsApi {
+public class PaymentsAdapter implements Payments {
 
     private final AddTransactionUseCase addTransactionUseCase;
 
-    public PaymentsApiAdapter(AddTransactionUseCase addTransactionUseCase) {
+    public PaymentsAdapter(AddTransactionUseCase addTransactionUseCase) {
         this.addTransactionUseCase = addTransactionUseCase;
     }
 
