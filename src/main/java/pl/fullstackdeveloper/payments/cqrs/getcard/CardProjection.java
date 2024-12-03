@@ -2,5 +2,12 @@ package pl.fullstackdeveloper.payments.cqrs.getcard;
 
 import java.time.LocalDate;
 
-public record CardProjection(String number, LocalDate expiration, Double balance, String currencyCode) {
+public interface CardProjection {
+
+    String getNumber();
+
+    LocalDate getExpiration();
+
+    String getCurrencyCode();
+
 }

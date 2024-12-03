@@ -6,6 +6,7 @@ import pl.fullstackdeveloper.common.PageSpec;
 import pl.fullstackdeveloper.common.ResultPage;
 import pl.fullstackdeveloper.payments.adapters.common.annotations.Adapter;
 import pl.fullstackdeveloper.payments.application.CardRepository;
+import pl.fullstackdeveloper.payments.cqrs.getcard.CardProjection;
 import pl.fullstackdeveloper.payments.domain.Card;
 import pl.fullstackdeveloper.payments.domain.CardNumber;
 
@@ -34,6 +35,12 @@ import java.util.Optional;
     public Optional<Card> findByNumber(final CardNumber cardNumber) {
         var number = mapper.toEntity(cardNumber);
         return repository.findByNumber(number).map(mapper::toDomain);
+    }
+
+    @Override
+    public Optional<CardProjection> findProjectionByNumber(CardNumber cardNumber) {
+        var number = mapper.toEntity(cardNumber);
+        return repository.findProjectionByNumber(number);
     }
 
     @Override

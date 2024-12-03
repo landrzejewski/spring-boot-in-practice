@@ -2,6 +2,7 @@ package pl.fullstackdeveloper.payments.application;
 
 import pl.fullstackdeveloper.common.PageSpec;
 import pl.fullstackdeveloper.common.ResultPage;
+import pl.fullstackdeveloper.payments.cqrs.getcard.CardProjection;
 import pl.fullstackdeveloper.payments.domain.Card;
 import pl.fullstackdeveloper.payments.domain.CardNumber;
 
@@ -14,5 +15,7 @@ public interface CardRepository {
     ResultPage<Card> findAll(PageSpec pageSpec);
 
     Optional<Card> findByNumber(CardNumber cardNumber);
+
+    Optional<CardProjection> findProjectionByNumber(CardNumber cardNumber);
 
 }
