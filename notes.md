@@ -34,4 +34,5 @@ select new pl.training.blog.application.ArticleView(a.id, a.title, a.author) fro
 
 https://leanpub.com/maws
 https://github.com/odrotbohm/spring-modulith-deep-dive
+https://leanpub.com/get-your-hands-dirty-on-clean-architecture
 https://reflectoring.io/book/
