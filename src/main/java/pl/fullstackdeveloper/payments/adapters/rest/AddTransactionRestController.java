@@ -1,4 +1,4 @@
-package pl.fullstackdeveloper.payments.cqrs.addtransaction;
+package pl.fullstackdeveloper.payments.adapters.rest;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import pl.fullstackdeveloper.common.cqrs.Bus;
+import pl.fullstackdeveloper.payments.cqrs.addtransaction.AddTransactionCommand;
 
 @RestController
 final class AddTransactionRestController {

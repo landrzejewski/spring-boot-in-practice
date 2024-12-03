@@ -1,4 +1,4 @@
-package pl.fullstackdeveloper.payments.adapters;
+package pl.fullstackdeveloper.payments.adapters.rest;
 
 import org.springframework.core.annotation.Order;
 import org.springframework.http.ResponseEntity;

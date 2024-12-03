@@ -1,4 +1,4 @@
-package pl.fullstackdeveloper.payments.cqrs.addcard;
+package pl.fullstackdeveloper.payments.adapters.rest;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import pl.fullstackdeveloper.common.cqrs.Bus;
 import pl.fullstackdeveloper.payments.adapters.common.web.LocationUri;
+import pl.fullstackdeveloper.payments.cqrs.addcard.AddCardCommand;
+import pl.fullstackdeveloper.payments.cqrs.addcard.AddCardResult;
 
 @RestController
 final class AddCardRestController {
