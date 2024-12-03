@@ -1,5 +1,8 @@
 package pl.fullstackdeveloper.common.cqrs;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class SpringBus implements Bus {
     private final Registry registry;
 

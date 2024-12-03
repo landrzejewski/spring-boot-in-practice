@@ -1,11 +1,13 @@
 package pl.fullstackdeveloper.common.cqrs;
 
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.core.GenericTypeResolver;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Configuration
 public class Registry {
     private Map<Class<? extends Command>, CommandProvider> commandProviderMap = new HashMap<>();
     private Map<Class<? extends Query>, QueryProvider> queryProviderMap = new HashMap<>();
