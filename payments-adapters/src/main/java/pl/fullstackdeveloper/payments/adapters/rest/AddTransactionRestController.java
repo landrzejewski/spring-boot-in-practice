@@ -1,6 +1,5 @@
 package pl.fullstackdeveloper.payments.adapters.rest;
 
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import org.springframework.http.ResponseEntity;
@@ -37,7 +36,7 @@ final class AddCardTransactionRestController {
 
 }
 
-record AddCardTransactionRequest(@Min(100) Double amount,
+record AddCardTransactionRequest(Double amount,
                                  @Pattern(regexp = "[A-Z]{3}") String currencyCode,
                                  @NotNull String type) {
 
