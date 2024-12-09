@@ -14,7 +14,7 @@ import static org.springframework.core.Ordered.HIGHEST_PRECEDENCE;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @Order(HIGHEST_PRECEDENCE)
-@ControllerAdvice(basePackages = "pl.training.payments.adapters.rest")
+@ControllerAdvice(basePackages = "pl.fullstackdeveloper.payments.adapters.rest")
 final class PaymentsRestExceptionHandler {
 
     private final RestExceptionResponseBuilder exceptionResponseBuilder;
