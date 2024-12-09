@@ -12,7 +12,7 @@ Authorization: Basic YWRtaW46YWRtaW4=
 %}
 
 ###
-POST http://localhost:8080/api/cards/{{number}}/transactions
+POST http://localhost:8080/api/cards/3518141629710751/transactions
 Accept: application/json
 Content-Type: application/json
 Authorization: Basic YWRtaW46YWRtaW4=
