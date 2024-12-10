@@ -9,7 +9,6 @@ import pl.fullstackdeveloper.orders.application.Payments;
 import pl.fullstackdeveloper.payments.adapters.common.annotations.Adapter;
 import pl.fullstackdeveloper.payments.application.AddTransactionUseCase;
 import pl.fullstackdeveloper.payments.domain.CardNumber;
-import pl.fullstackdeveloper.payments.domain.TransactionType;
 
 import java.util.Currency;
 
