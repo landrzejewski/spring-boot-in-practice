@@ -1,6 +1,11 @@
 package pl.fullstackdeveloper.payments.cqrs.usecases.getcards;
 
-import java.time.LocalDate;
+import java.util.List;
 
-public record GetCardsQueryResult(String number, LocalDate expiration, Double balance, String currencyCode) {
+public interface GetCardsQueryResult {
+
+    String getNumber();
+
+    List<String> getTransactions();
+
 }

@@ -2,8 +2,6 @@ package pl.fullstackdeveloper.payments.adapters.persistence;
 
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import pl.fullstackdeveloper.common.PageSpec;
-import pl.fullstackdeveloper.common.ResultPage;
 import pl.fullstackdeveloper.payments.adapters.common.annotations.Adapter;
 import pl.fullstackdeveloper.payments.application.CardRepository;
 import pl.fullstackdeveloper.payments.domain.Card;
@@ -21,13 +19,6 @@ import java.util.Optional;
     JpaCardRepositoryAdapter(final JpaCardRepository repository, final JpaCardRepositoryMapper mapper) {
         this.repository = repository;
         this.mapper = mapper;
-    }
-
-    @Override
-    public ResultPage<Card> findAll(final PageSpec pageSpec) {
-        var pageRequest = mapper.toEntity(pageSpec);
-        var cardEntityPage = repository.findAll(pageRequest);
-        return mapper.toDomain(cardEntityPage);
     }
 
     @Override
