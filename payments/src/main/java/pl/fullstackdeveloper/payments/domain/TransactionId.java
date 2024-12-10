@@ -10,4 +10,8 @@ public record TransactionId(UUID value) {
         this(randomUUID());
     }
 
+    public String asText() {
+        return value.toString();
+    }
+
 }
