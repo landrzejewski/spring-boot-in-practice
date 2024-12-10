@@ -18,11 +18,6 @@ public class PaymentsConfiguration {
     }
 
     @Bean
-    public GetCardUseCase getCardUseCase(CardRepository cardRepository) {
-        return new GetCardUseCase(cardRepository);
-    }
-
-    @Bean
     public AddTransactionUseCase addTransactionUseCase(DateTimeProvider dateTimeProvider, TransactionEventPublisher transactionEventPublisher, CardRepository cardRepository) {
         return new AddTransactionUseCase(dateTimeProvider, transactionEventPublisher, cardRepository);
     }
