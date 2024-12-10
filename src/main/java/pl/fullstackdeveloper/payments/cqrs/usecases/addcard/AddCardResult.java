@@ -1,4 +1,4 @@
-package pl.fullstackdeveloper.payments.cqrs.addcard;
+package pl.fullstackdeveloper.payments.cqrs.usecases.addcard;
 
 import java.time.LocalDate;
 

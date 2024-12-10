@@ -41,6 +41,11 @@ Accept: application/json
 Content-Type: application/json
 Authorization: Basic YWRtaW46YWRtaW4=
 
+{
+  "pageNumber": 0,
+  "pageSize": 10
+}
+
 ###
 GET http://localhost:8080/api/cards/{{number}}
 Accept: application/json

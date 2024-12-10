@@ -1,13 +1,10 @@
 package pl.fullstackdeveloper.payments.application;
 
 import pl.fullstackdeveloper.common.Money;
-import pl.fullstackdeveloper.common.annotations.Atomic;
-import pl.fullstackdeveloper.common.annotations.EnableLogging;
 import pl.fullstackdeveloper.payments.domain.*;
 
 import java.util.function.Consumer;
 
-@Atomic
 public class AddTransactionUseCase {
 
     private final DateTimeProvider dateTimeProvider;

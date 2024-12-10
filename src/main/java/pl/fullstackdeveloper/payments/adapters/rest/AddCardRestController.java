@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import pl.fullstackdeveloper.payments.adapters.common.cqrs.Bus;
 import pl.fullstackdeveloper.payments.adapters.common.web.LocationUri;
-import pl.fullstackdeveloper.payments.cqrs.addcard.AddCardCommand;
-import pl.fullstackdeveloper.payments.cqrs.addcard.AddCardResult;
+import pl.fullstackdeveloper.payments.cqrs.usecases.addcard.AddCardCommand;
+import pl.fullstackdeveloper.payments.cqrs.usecases.addcard.AddCardResult;
 
 @RestController
 final class AddCardRestController {

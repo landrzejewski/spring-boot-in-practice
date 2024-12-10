@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.fullstackdeveloper.payments.adapters.common.cqrs.Bus;
-import pl.fullstackdeveloper.payments.cqrs.getcard.GetCardQuery;
-import pl.fullstackdeveloper.payments.cqrs.getcard.GetCardResult;
+import pl.fullstackdeveloper.payments.cqrs.usecases.getcard.GetCardQuery;
+import pl.fullstackdeveloper.payments.cqrs.usecases.getcard.GetCardResult;
 
 @RestController
 @RequestMapping("api/cards")

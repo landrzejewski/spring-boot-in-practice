@@ -2,39 +2,26 @@ package pl.fullstackdeveloper.payments.adapters.rest;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import pl.fullstackdeveloper.common.PageSpec;
 import pl.fullstackdeveloper.common.ResultPage;
-import pl.fullstackdeveloper.payments.application.GetCardsUseCase;
-import pl.fullstackdeveloper.payments.domain.Card;
-
-import java.time.LocalDate;
+import pl.fullstackdeveloper.payments.adapters.common.cqrs.Bus;
+import pl.fullstackdeveloper.payments.cqrs.usecases.getcards.GetCardsQuery;
+import pl.fullstackdeveloper.payments.cqrs.usecases.getcards.GetCardsQueryResult;
 
 @RestController
 final class GetCardsRestController {
 
-    private final GetCardsUseCase getCardsUseCase;
+    private final Bus bus;
 
-    GetCardsRestController(final GetCardsUseCase getCardsUseCase) {
-        this.getCardsUseCase = getCardsUseCase;
+    GetCardsRestController(Bus bus) {
+        this.bus = bus;
     }
 
     @GetMapping("api/cards")
-    ResponseEntity<ResultPage<GetCardsResponse>> getCards(
-            @RequestParam(required = false, defaultValue = "0") final int pageNumber,
-            @RequestParam(required = false, defaultValue = "10") final int pageSize) {
-        var pageSpec = new PageSpec(pageNumber, pageSize);
-        var response = getCardsUseCase.handle(pageSpec).map(GetCardsResponse::from);
-        return ResponseEntity.ok(response);
+    ResponseEntity<ResultPage<GetCardsQueryResult>> getCards(@RequestBody final GetCardsQuery query) {
+        return ResponseEntity.ok(bus.execute(query));
     }
 
 }
 
-record GetCardsResponse(String number, LocalDate expiration, Double balance, String currencyCode) {
-
-    static GetCardsResponse from(Card card) {
-        return new GetCardsResponse(card.getNumber().value(), card.getExpiration(), card.getBalance().amount().doubleValue(), card.getCurrency().getCurrencyCode());
-    }
-
-}
