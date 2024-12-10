@@ -1,10 +1,7 @@
 package pl.fullstackdeveloper.payments.adapters.rest;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.fullstackdeveloper.payments.adapters.common.cqrs.Bus;
 import pl.fullstackdeveloper.payments.cqrs.usecases.getcard.GetCardQuery;
 import pl.fullstackdeveloper.payments.cqrs.usecases.getcard.GetCardResult;
@@ -20,8 +17,9 @@ final class GetCardRestController {
     }
 
     @GetMapping("{number:\\d{16,19}}")
-    ResponseEntity<GetCardResult> getCard(@PathVariable final String number) {
-        var query = new GetCardQuery(number);
+    ResponseEntity<GetCardResult> getCard(@PathVariable final String number,
+                                          @RequestParam(required = false, defaultValue = "PLN") String currencyCode) {
+        var query = new GetCardQuery(number, currencyCode);
         var result = bus.execute(query);
         return ResponseEntity.ok(result);
     }

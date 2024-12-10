@@ -1,6 +1,6 @@
 package pl.fullstackdeveloper.payments.cqrs.usecases.getcard;
 
-import java.util.List;
+import java.math.BigDecimal;
 
-public record GetCardResult(String number, List<String> transactions) {
+public record GetCardResult(String number, BigDecimal balance) {
 }
