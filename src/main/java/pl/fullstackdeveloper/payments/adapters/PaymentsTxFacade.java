@@ -1,7 +1,5 @@
 package pl.fullstackdeveloper.payments.adapters;
 
-import io.swagger.v3.oas.annotations.servers.Server;
-import org.springframework.transaction.annotation.Transactional;
 import pl.fullstackdeveloper.common.Money;
 import pl.fullstackdeveloper.common.PageSpec;
 import pl.fullstackdeveloper.common.ResultPage;
@@ -17,14 +15,14 @@ import java.util.Currency;
 
 //@Transactional
 //@Server
-public class PaymentsFacade {
+public class PaymentsTxFacade {
 
     private final AddCardUseCase  addCardUseCase;
     private final AddTransactionUseCase addTransactionUseCase;
     private final GetCardsUseCase getCardsUseCase;
     private final GetCardUseCase getCardUseCase;
 
-    public PaymentsFacade(AddCardUseCase addCardUseCase, AddTransactionUseCase addTransactionUseCase, GetCardsUseCase getCardsUseCase, GetCardUseCase getCardUseCase) {
+    public PaymentsTxFacade(AddCardUseCase addCardUseCase, AddTransactionUseCase addTransactionUseCase, GetCardsUseCase getCardsUseCase, GetCardUseCase getCardUseCase) {
         this.addCardUseCase = addCardUseCase;
         this.addTransactionUseCase = addTransactionUseCase;
         this.getCardsUseCase = getCardsUseCase;
