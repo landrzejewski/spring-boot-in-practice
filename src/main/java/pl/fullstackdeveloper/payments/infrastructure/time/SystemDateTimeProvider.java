@@ -5,7 +5,7 @@ import pl.fullstackdeveloper.common.annotations.Adapter;
 import java.time.ZonedDateTime;
 
 @Adapter
-final class SystemDateTimeProvider implements DateTimeProvider {
+public final class SystemDateTimeProvider implements DateTimeProvider {
 
     @Override
     public ZonedDateTime getZonedDateTime() {
