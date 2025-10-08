@@ -1,4 +1,4 @@
-package pl.fullstackdeveloper.payments.cqrs.readmodel;
+package pl.fullstackdeveloper.payments.cqrs.queries.readmodel;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;

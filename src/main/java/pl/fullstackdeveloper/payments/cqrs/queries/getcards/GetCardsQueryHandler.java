@@ -1,11 +1,11 @@
-package pl.fullstackdeveloper.payments.cqrs.usecases.getcards;
+package pl.fullstackdeveloper.payments.cqrs.queries.getcards;
 
 import org.springframework.data.domain.PageRequest;
 import pl.fullstackdeveloper.common.PageSpec;
 import pl.fullstackdeveloper.common.ResultPage;
 import pl.fullstackdeveloper.payments.adapters.common.annotations.Handler;
 import pl.fullstackdeveloper.payments.adapters.common.cqrs.QueryHandler;
-import pl.fullstackdeveloper.payments.cqrs.readmodel.MongoCardRepository;
+import pl.fullstackdeveloper.payments.cqrs.queries.readmodel.MongoCardRepository;
 
 @Handler
 public class GetCardsQueryHandler implements QueryHandler<ResultPage<GetCardsQueryResult>, GetCardsQuery> {

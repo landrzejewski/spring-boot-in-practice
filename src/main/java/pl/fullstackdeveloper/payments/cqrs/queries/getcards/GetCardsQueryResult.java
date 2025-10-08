@@ -1,4 +1,4 @@
-package pl.fullstackdeveloper.payments.cqrs.usecases.getcards;
+package pl.fullstackdeveloper.payments.cqrs.queries.getcards;
 
 import java.util.List;
 

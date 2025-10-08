@@ -3,8 +3,8 @@ package pl.fullstackdeveloper.payments.cqrs.events;
 import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
-import pl.fullstackdeveloper.payments.cqrs.readmodel.CardDocument;
-import pl.fullstackdeveloper.payments.cqrs.readmodel.MongoCardRepository;
+import pl.fullstackdeveloper.payments.cqrs.queries.readmodel.CardDocument;
+import pl.fullstackdeveloper.payments.cqrs.queries.readmodel.MongoCardRepository;
 
 @Component
 public class SpringEventHandler {
