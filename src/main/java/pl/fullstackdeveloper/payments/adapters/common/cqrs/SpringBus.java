@@ -13,9 +13,9 @@ public class SpringBus implements Bus {
     }
 
     @Override
-    public <R, C extends Command<R>> R execute(C command) {
-        var commandHandler = (CommandHandler<R, C>) registry.getCmd(command.getClass());
-        return commandHandler.handle(command);
+    public <C extends Command> void execute(C command) {
+        var commandHandler = (CommandHandler<C>) registry.getCmd(command.getClass());
+        commandHandler.handle(command);
     }
 
     @Override

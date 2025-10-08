@@ -13,7 +13,6 @@ public class CardDocument {
     @Id
     private UUID id;
     private String number;
-    private List<String> transactions;
 
     public CardDocument() {
     }
@@ -21,19 +20,10 @@ public class CardDocument {
     public CardDocument(UUID id, String number) {
         this.id = id;
         this.number = number;
-        this.transactions = new ArrayList<>();
-    }
-
-    public void addTransaction(String transaction) {
-        transactions.add(transaction);
     }
 
     public String getNumber() {
         return number;
-    }
-
-    public List<String> getTransactions() {
-        return transactions;
     }
 
 }

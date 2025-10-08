@@ -7,12 +7,8 @@ Authorization: Basic YWRtaW46YWRtaW4=
   "currencyCode": "PLN"
 }
 
-> {%
-    client.global.set('number', response.body.number);
-%}
-
 ###
-POST http://localhost:8080/api/cards/{{number}}/transactions
+POST http://localhost:8080/api/cards/8344339053202362/transactions
 Accept: application/json
 Content-Type: application/json
 Authorization: Basic YWRtaW46YWRtaW4=
@@ -24,7 +20,7 @@ Authorization: Basic YWRtaW46YWRtaW4=
 }
 
 ###
-POST http://localhost:8080/api/cards/{{number}}/transactions
+POST http://localhost:8080/api/cards/8344339053202362/transactions
 Accept: application/json
 Content-Type: application/json
 Authorization: Basic YWRtaW46YWRtaW4=
@@ -36,6 +32,7 @@ Authorization: Basic YWRtaW46YWRtaW4=
 }
 
 ###
+
 GET http://localhost:8080/api/cards
 Accept: application/json
 Content-Type: application/json
@@ -47,7 +44,8 @@ Authorization: Basic YWRtaW46YWRtaW4=
 }
 
 ###
-GET http://localhost:8080/api/cards/{{number}}
+
+GET http://localhost:8080/api/cards/8344339053202362
 Accept: application/json
 Content-Type: application/json
 Authorization: Basic YWRtaW46YWRtaW4=

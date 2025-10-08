@@ -2,7 +2,7 @@ package pl.fullstackdeveloper.payments.adapters.common.cqrs;
 
 import org.springframework.context.ApplicationContext;
 
-public class CommandProvider<H extends CommandHandler<?, ?>> {
+public class CommandProvider<H extends CommandHandler<?>> {
 
     private final ApplicationContext applicationContext;
     private final Class<H> type;

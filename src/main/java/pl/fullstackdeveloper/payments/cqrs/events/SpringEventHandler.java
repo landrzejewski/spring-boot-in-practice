@@ -31,16 +31,8 @@ public class SpringEventHandler {
     @Async
     @EventListener
     public void onTransactionAdded(TransactionAddedEvent event) {
-        cardRepository.findByNumber(event.getCardNumber().value())
-                .ifPresent(cardDocument -> addTransaction(event, cardDocument));
         var transactionDocument = toDocument(event);
         transactionRepository.save(transactionDocument);
-    }
-
-    private void addTransaction(TransactionAddedEvent event, CardDocument cardDocument) {
-        var transaction = event.getTransaction().toString();
-        cardDocument.addTransaction(transaction);
-        cardRepository.save(cardDocument);
     }
 
     private TransactionDocument toDocument(TransactionAddedEvent event) {
