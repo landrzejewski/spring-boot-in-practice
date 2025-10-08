@@ -6,9 +6,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import pl.fullstackdeveloper.payments.adapters.common.cqrs.Bus;
-import pl.fullstackdeveloper.payments.adapters.common.web.LocationUri;
 import pl.fullstackdeveloper.payments.cqrs.usecases.addcard.AddCardCommand;
-import pl.fullstackdeveloper.payments.cqrs.usecases.addcard.AddCardResult;
 
 @RestController
 final class AddCardRestController {
@@ -20,10 +18,9 @@ final class AddCardRestController {
     }
 
     @PostMapping("api/cards")
-    ResponseEntity<AddCardResult> addCard(@Validated @RequestBody final AddCardCommand command) {
-        var result = bus.execute(command);
-        var locationUri = LocationUri.fromRequest(result.number());
-        return ResponseEntity.created(locationUri).body(result);
+    ResponseEntity<Void> addCard(@Validated @RequestBody final AddCardCommand command) {
+        bus.execute(command);
+        return ResponseEntity.noContent().build();
     }
 
 }

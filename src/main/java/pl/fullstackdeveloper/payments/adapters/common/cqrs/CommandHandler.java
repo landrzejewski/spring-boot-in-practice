@@ -1,7 +1,7 @@
 package pl.fullstackdeveloper.payments.adapters.common.cqrs;
 
-public interface CommandHandler<R, C extends Command<R>> {
+public interface CommandHandler<C extends Command> {
 
-    R handle(C command);
+    void handle(C command);
 
 }

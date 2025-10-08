@@ -26,9 +26,9 @@ public class Registry {
     }
 
     private void registerCommand(ApplicationContext applicationContext, String name) {
-        Class<CommandHandler<?, ?>> handlerClass = (Class<CommandHandler<?, ?>>) applicationContext.getType(name);
+        Class<CommandHandler<?>> handlerClass = (Class<CommandHandler<?>>) applicationContext.getType(name);
         Class<?>[] generics = GenericTypeResolver.resolveTypeArguments(handlerClass, CommandHandler.class);
-        Class<? extends Command> commandType = (Class<? extends Command>) generics[1];
+        Class<? extends Command> commandType = (Class<? extends Command>) generics[0];
         commandProviderMap.put(commandType, new CommandProvider(applicationContext, handlerClass));
     }
 
@@ -39,7 +39,7 @@ public class Registry {
         queryProviderMap.put(queryType, new QueryProvider(applicationContext, handlerClass));
     }
 
-    <R, C extends Command<R>> CommandHandler<R, C> getCmd(Class<C> commandClass) {
+    <R, C extends Command> CommandHandler<C> getCmd(Class<C> commandClass) {
         return commandProviderMap.get(commandClass).get();
     }
 

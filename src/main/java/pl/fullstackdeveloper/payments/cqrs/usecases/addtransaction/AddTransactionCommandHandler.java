@@ -12,7 +12,7 @@ import static pl.fullstackdeveloper.payments.domain.TransactionType.INFLOW;
 import static pl.fullstackdeveloper.payments.domain.TransactionType.PAYMENT;
 
 @Handler
-public class AddTransactionCommandHandler implements CommandHandler<AddTransactionResult, AddTransactionCommand> {
+public class AddTransactionCommandHandler implements CommandHandler<AddTransactionCommand> {
 
     private final AddTransactionUseCase addTransactionUseCase;
     private final ApplicationEventPublisher eventPublisher;
@@ -23,7 +23,7 @@ public class AddTransactionCommandHandler implements CommandHandler<AddTransacti
     }
 
     @Override
-    public AddTransactionResult handle(AddTransactionCommand command) {
+    public void handle(AddTransactionCommand command) {
         var cardNumber = new CardNumber(command.cardNumber());
         var amount = new Money(command.amount(), command.currencyCode());
         var transactionType = switch (command.type()) {
@@ -33,7 +33,6 @@ public class AddTransactionCommandHandler implements CommandHandler<AddTransacti
         };
         var transactionId = addTransactionUseCase.handle(cardNumber, amount, transactionType);
         eventPublisher.publishEvent(new TransactionAddedEvent(this, cardNumber, transactionId));
-        return new AddTransactionResult(transactionId.toString());
     }
 
 }
