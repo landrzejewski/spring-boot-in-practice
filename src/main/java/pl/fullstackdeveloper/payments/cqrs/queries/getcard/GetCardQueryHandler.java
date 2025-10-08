@@ -1,9 +1,9 @@
-package pl.fullstackdeveloper.payments.cqrs.usecases.getcard;
+package pl.fullstackdeveloper.payments.cqrs.queries.getcard;
 
 import pl.fullstackdeveloper.payments.adapters.common.annotations.Handler;
 import pl.fullstackdeveloper.payments.adapters.common.cqrs.QueryHandler;
-import pl.fullstackdeveloper.payments.cqrs.readmodel.MongoTransactionRepository;
-import pl.fullstackdeveloper.payments.cqrs.readmodel.TransactionDocument;
+import pl.fullstackdeveloper.payments.cqrs.queries.readmodel.MongoTransactionRepository;
+import pl.fullstackdeveloper.payments.cqrs.queries.readmodel.TransactionDocument;
 
 import java.math.BigDecimal;
 

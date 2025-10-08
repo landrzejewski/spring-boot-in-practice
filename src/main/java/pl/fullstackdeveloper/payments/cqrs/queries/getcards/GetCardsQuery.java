@@ -1,4 +1,4 @@
-package pl.fullstackdeveloper.payments.cqrs.usecases.getcards;
+package pl.fullstackdeveloper.payments.cqrs.queries.getcards;
 
 import pl.fullstackdeveloper.common.ResultPage;
 import pl.fullstackdeveloper.payments.adapters.common.cqrs.Query;

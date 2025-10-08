@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import pl.fullstackdeveloper.common.ResultPage;
 import pl.fullstackdeveloper.payments.adapters.common.cqrs.Bus;
-import pl.fullstackdeveloper.payments.cqrs.usecases.getcards.GetCardsQuery;
-import pl.fullstackdeveloper.payments.cqrs.usecases.getcards.GetCardsQueryResult;
+import pl.fullstackdeveloper.payments.cqrs.queries.getcards.GetCardsQuery;
+import pl.fullstackdeveloper.payments.cqrs.queries.getcards.GetCardsQueryResult;
 
 @RestController
 final class GetCardsRestController {

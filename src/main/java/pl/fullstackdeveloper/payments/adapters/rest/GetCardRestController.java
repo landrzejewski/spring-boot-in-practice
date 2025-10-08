@@ -3,8 +3,8 @@ package pl.fullstackdeveloper.payments.adapters.rest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.fullstackdeveloper.payments.adapters.common.cqrs.Bus;
-import pl.fullstackdeveloper.payments.cqrs.usecases.getcard.GetCardQuery;
-import pl.fullstackdeveloper.payments.cqrs.usecases.getcard.GetCardResult;
+import pl.fullstackdeveloper.payments.cqrs.queries.getcard.GetCardQuery;
+import pl.fullstackdeveloper.payments.cqrs.queries.getcard.GetCardResult;
 
 @RestController
 @RequestMapping("api/cards")
