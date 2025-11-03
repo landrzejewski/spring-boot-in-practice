@@ -1,4 +1,4 @@
-package pl.fullstackdeveloper.common;
+package pl.fullstackdeveloper.payments.domain;
 
 import java.math.BigDecimal;
 import java.util.Currency;

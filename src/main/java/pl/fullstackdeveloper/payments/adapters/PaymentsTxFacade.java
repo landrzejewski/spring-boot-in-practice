@@ -1,6 +1,6 @@
 package pl.fullstackdeveloper.payments.adapters;
 
-import pl.fullstackdeveloper.common.Money;
+import pl.fullstackdeveloper.payments.domain.Money;
 import pl.fullstackdeveloper.common.PageSpec;
 import pl.fullstackdeveloper.common.ResultPage;
 import pl.fullstackdeveloper.payments.application.AddCardUseCase;
