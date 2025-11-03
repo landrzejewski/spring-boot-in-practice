@@ -6,8 +6,8 @@ import pl.fullstackdeveloper.payments.application.*;
 public class PaymentsConfiguration {
 
     private final CardRepository cardRepository = new HashMapCardRepository();
-    // private final CardNumberGenerator cardNumberGenerator = new SequentialCardNumberGenerator(16);
-    private final CardNumberGenerator cardNumberGenerator = new RandomCardNumberGenerator(16);
+     private final CardNumberGenerator cardNumberGenerator = new SequentialCardNumberGenerator(16);
+    //private final CardNumberGenerator cardNumberGenerator = new RandomCardNumberGenerator(16);
     private final DateTimeProvider dateTimeProvider = new SystemDateTimeProvider();
     private final TransactionEventPublisher transactionEventPublisher = new ConsoleTransactionEventPublisher();
 
@@ -24,8 +24,8 @@ public class PaymentsConfiguration {
     }
 
     public AddTransactionUseCase addTransactionUseCase() {
-        // return new AddTransactionUseCase(dateTimeProvider, transactionEventPublisher, cardRepository);
-        return new AddTransactionLoggingProxy(dateTimeProvider, transactionEventPublisher, cardRepository);
+         return new AddTransactionUseCase(dateTimeProvider, transactionEventPublisher, cardRepository);
+        //return new AddTransactionLoggingProxy(dateTimeProvider, transactionEventPublisher, cardRepository);
     }
 
 }
