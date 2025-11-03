@@ -1,6 +1,6 @@
 package pl.fullstackdeveloper.payments.application;
 
-import pl.fullstackdeveloper.common.Money;
+import pl.fullstackdeveloper.payments.domain.Money;
 import pl.fullstackdeveloper.payments.domain.*;
 
 import java.util.function.Consumer;

@@ -1,6 +1,6 @@
 package pl.fullstackdeveloper;
 
-import pl.fullstackdeveloper.common.Money;
+import pl.fullstackdeveloper.payments.domain.Money;
 import pl.fullstackdeveloper.common.PageSpec;
 import pl.fullstackdeveloper.payments.DevPaymentsFactory;
 import pl.fullstackdeveloper.payments.PaymentsFactory;

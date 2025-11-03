@@ -1,6 +1,6 @@
 package pl.fullstackdeveloper.payments.adapters;
 
-import pl.fullstackdeveloper.common.Money;
+import pl.fullstackdeveloper.payments.domain.Money;
 import pl.fullstackdeveloper.payments.application.AddTransactionUseCase;
 import pl.fullstackdeveloper.payments.application.CardRepository;
 import pl.fullstackdeveloper.payments.application.DateTimeProvider;
