@@ -1,5 +1,6 @@
 package pl.fullstackdeveloper.payments.application;
 
+import pl.fullstackdeveloper.common.annotations.Timer;
 import pl.fullstackdeveloper.payments.domain.Money;
 import pl.fullstackdeveloper.common.annotations.Atomic;
 import pl.fullstackdeveloper.payments.domain.*;
@@ -21,7 +22,7 @@ public class AddTransactionUseCase {
         this.cardRepository = cardRepository;
     }
 
-    //@EnableLogging
+    // @Timer
     public TransactionId handle(final CardNumber cardNumber, final Money value, final TransactionType transactionType) {
         var card = findCard(cardNumber);
         var transaction = createTransaction(value, transactionType);
