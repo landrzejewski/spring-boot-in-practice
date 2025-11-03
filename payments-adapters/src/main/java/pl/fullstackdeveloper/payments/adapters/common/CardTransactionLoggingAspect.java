@@ -4,7 +4,7 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
-import pl.fullstackdeveloper.common.Money;
+import pl.fullstackdeveloper.payments.domain.Money;
 import pl.fullstackdeveloper.payments.domain.CardNumber;
 import pl.fullstackdeveloper.payments.domain.TransactionType;
 
@@ -18,7 +18,7 @@ public final class CardTransactionLoggingAspect {
     private static final Logger LOGGER = Logger.getLogger(CardTransactionLoggingAspect.class.getName());
 
     //@Pointcut("@annotation(pl.fullstackdeveloper.common.annotations.EnableLogging)")
-    @Pointcut("execution(* pl.fullstackdeveloper.payments.application.AddTransactionUseCase.handle(pl.fullstackdeveloper.payments.domain.CardNumber, pl.fullstackdeveloper.common.Money, pl.fullstackdeveloper.payments.domain.TransactionType))")
+    @Pointcut("execution(* pl.fullstackdeveloper.payments.application.AddTransactionUseCase.handle(pl.fullstackdeveloper.payments.domain.CardNumber, pl.fullstackdeveloper.payments.domain.Money, pl.fullstackdeveloper.payments.domain.TransactionType))")
     public void transaction() {
     }
 

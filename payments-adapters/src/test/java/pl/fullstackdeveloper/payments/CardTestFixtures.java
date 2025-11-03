@@ -1,6 +1,6 @@
 package pl.fullstackdeveloper.payments;
 
-import pl.fullstackdeveloper.common.Money;
+import pl.fullstackdeveloper.payments.domain.Money;
 import pl.fullstackdeveloper.payments.domain.Card;
 import pl.fullstackdeveloper.payments.domain.CardId;
 import pl.fullstackdeveloper.payments.domain.CardNumber;
