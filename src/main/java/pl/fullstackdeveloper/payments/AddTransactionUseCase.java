@@ -1,5 +1,6 @@
 package pl.fullstackdeveloper.payments;
 
+import org.springframework.transaction.annotation.Transactional;
 import pl.fullstackdeveloper.common.model.Money;
 import pl.fullstackdeveloper.common.annotations.Atomic;
 import pl.fullstackdeveloper.payments.infrastructure.events.TransactionEventPublisher;
@@ -8,7 +9,7 @@ import pl.fullstackdeveloper.payments.infrastructure.time.DateTimeProvider;
 
 import java.util.function.Consumer;
 
-@Atomic
+@Transactional
 public class AddTransactionUseCase {
 
     private final DateTimeProvider dateTimeProvider;
@@ -31,7 +32,14 @@ public class AddTransactionUseCase {
         card.addEventListener(cardEventListener);
         card.registerTransaction(transaction);
         card.removeEventListener(cardEventListener);
+        //throw new RuntimeException();
         cardRepository.save(card);
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("#######################################################");
         return transaction.id();
     }
 
