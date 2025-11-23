@@ -29,17 +29,7 @@ public class AddTransactionUseCase {
         var card = findCard(cardNumber);
         var transaction = createTransaction(value, transactionType);
         var cardEventListener = createCardEventListener();
-        card.addEventListener(cardEventListener);
-        card.registerTransaction(transaction);
-        card.removeEventListener(cardEventListener);
-        //throw new RuntimeException();
-        cardRepository.save(card);
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        System.out.println("#######################################################");
+        addTransactionToCard(card, transaction, cardEventListener);
         return transaction.id();
     }
 
@@ -60,6 +50,13 @@ public class AddTransactionUseCase {
             var applicationEvent = new TransactionAdded(cardNumber, transactionId, transactionType);
             transactionEventPublisher.publish(applicationEvent);
         };
+    }
+
+    private void addTransactionToCard(Card card, Transaction transaction, Consumer<TransactionRegistered> cardEventListener) {
+        card.addEventListener(cardEventListener);
+        card.registerTransaction(transaction);
+        card.removeEventListener(cardEventListener);
+        cardRepository.save(card);
     }
 
 }
