@@ -1,14 +1,7 @@
 package pl.fullstackdeveloper;
 
-import pl.fullstackdeveloper.common.Money;
-import pl.fullstackdeveloper.common.PageSpec;
-import pl.fullstackdeveloper.payments.PaymentsConfiguration;
-
 import java.util.Currency;
 import java.util.logging.Logger;
-
-import static pl.fullstackdeveloper.payments.domain.TransactionType.INFLOW;
-import static pl.fullstackdeveloper.payments.domain.TransactionType.PAYMENT;
 
 public class Application {
 

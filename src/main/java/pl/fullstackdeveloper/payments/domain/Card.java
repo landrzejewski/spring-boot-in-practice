@@ -1,7 +1,5 @@
 package pl.fullstackdeveloper.payments.domain;
 
-import pl.fullstackdeveloper.common.Money;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Currency;
