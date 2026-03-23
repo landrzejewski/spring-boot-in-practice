@@ -2,8 +2,10 @@ package pl.fullstackdeveloper.payments.application;
 
 import pl.fullstackdeveloper.common.PageSpec;
 import pl.fullstackdeveloper.common.ResultPage;
+import pl.fullstackdeveloper.common.annotations.Atomic;
 import pl.fullstackdeveloper.payments.domain.Card;
 
+@Atomic
 public class GetCardsUseCase {
 
     private final CardRepository cardRepository;
