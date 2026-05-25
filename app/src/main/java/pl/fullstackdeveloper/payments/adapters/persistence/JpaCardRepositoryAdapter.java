@@ -2,8 +2,8 @@ package pl.fullstackdeveloper.payments.adapters.persistence;
 
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import pl.fullstackdeveloper.common.PageSpec;
-import pl.fullstackdeveloper.common.ResultPage;
+import pl.fullstackdeveloper.payments.common.PageSpec;
+import pl.fullstackdeveloper.payments.common.ResultPage;
 import pl.fullstackdeveloper.payments.adapters.common.annotations.Adapter;
 import pl.fullstackdeveloper.payments.application.CardRepository;
 import pl.fullstackdeveloper.payments.domain.Card;

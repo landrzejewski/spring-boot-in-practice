@@ -3,8 +3,8 @@ package pl.fullstackdeveloper.payments.adapters.persistence;
 import com.fasterxml.jackson.core.type.TypeReference;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import pl.fullstackdeveloper.common.PageSpec;
-import pl.fullstackdeveloper.common.ResultPage;
+import pl.fullstackdeveloper.payments.common.PageSpec;
+import pl.fullstackdeveloper.payments.common.ResultPage;
 import pl.fullstackdeveloper.payments.adapters.common.JsonMapper;
 import pl.fullstackdeveloper.payments.adapters.common.annotations.Mapper;
 import pl.fullstackdeveloper.payments.domain.Card;
@@ -16,7 +16,7 @@ import java.util.Currency;
 import java.util.List;
 import java.util.UUID;
 
-import static pl.fullstackdeveloper.common.Mappers.mapList;
+import static pl.fullstackdeveloper.payments.common.Mappers.mapList;
 
 @Mapper
 final class JpaCardRepositoryMapper {

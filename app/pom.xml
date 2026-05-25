@@ -12,7 +12,7 @@
     </parent>
 
     <groupId>pl.fullstackdeveloper</groupId>
-    <artifactId>payments-adapters</artifactId>
+    <artifactId>app</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <properties>

@@ -18,9 +18,8 @@
     </properties>
 
     <modules>
-        <module>common</module>
         <module>payments</module>
-        <module>payments-adapters</module>
+        <module>app</module>
     </modules>
 
 </project>

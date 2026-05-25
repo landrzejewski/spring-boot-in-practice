@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
-import pl.fullstackdeveloper.common.annotations.Atomic;
+import pl.fullstackdeveloper.payments.common.Atomic;
 
 import static pl.fullstackdeveloper.payments.adapters.common.aop.Aop.findAnnotation;
 
@@ -21,7 +21,7 @@ public final class AtomicAspect {
         this.platformTransactionManager = platformTransactionManager;
     }
 
-    @Around("@annotation(pl.fullstackdeveloper.common.annotations.Atomic) || within(@pl.fullstackdeveloper.common.annotations.Atomic *)")
+    @Around("@annotation(pl.fullstackdeveloper.payments.common.Atomic) || within(@pl.fullstackdeveloper.payments.common.Atomic *)")
     public Object runWithTransaction(final ProceedingJoinPoint joinPoint) throws Throwable {
         var annotation = findAnnotation(joinPoint, Atomic.class);
         var transactionDefinition = transactionDefinition(annotation);

@@ -14,7 +14,7 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.util.List;
 
-import static pl.fullstackdeveloper.common.Mappers.mapList;
+import static pl.fullstackdeveloper.payments.common.Mappers.mapList;
 
 @RestController
 @RequestMapping("api/cards")

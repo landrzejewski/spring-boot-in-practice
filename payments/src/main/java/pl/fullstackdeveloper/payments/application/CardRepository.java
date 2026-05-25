@@ -1,7 +1,7 @@
 package pl.fullstackdeveloper.payments.application;
 
-import pl.fullstackdeveloper.common.PageSpec;
-import pl.fullstackdeveloper.common.ResultPage;
+import pl.fullstackdeveloper.payments.common.PageSpec;
+import pl.fullstackdeveloper.payments.common.ResultPage;
 import pl.fullstackdeveloper.payments.domain.Card;
 import pl.fullstackdeveloper.payments.domain.CardNumber;
 

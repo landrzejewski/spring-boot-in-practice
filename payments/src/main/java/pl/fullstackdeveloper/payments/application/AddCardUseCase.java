@@ -1,6 +1,6 @@
 package pl.fullstackdeveloper.payments.application;
 
-import pl.fullstackdeveloper.common.annotations.Atomic;
+import pl.fullstackdeveloper.payments.common.Atomic;
 import pl.fullstackdeveloper.payments.domain.Card;
 import pl.fullstackdeveloper.payments.domain.CardId;
 

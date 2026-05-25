@@ -1,4 +1,4 @@
-package pl.fullstackdeveloper.common;
+package pl.fullstackdeveloper.payments.common;
 
 import java.util.List;
 import java.util.function.Function;
