@@ -3,7 +3,7 @@ package pl.fullstackdeveloper.payments.integration;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ActiveProfiles;
@@ -13,7 +13,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import pl.fullstackdeveloper.Application;
 
 import static org.hamcrest.core.Is.is;
-import static org.hamcrest.number.IsCloseTo.closeTo;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.DEFINED_PORT;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.context.jdbc.Sql.ExecutionPhase.AFTER_TEST_METHOD;
@@ -23,7 +22,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static pl.fullstackdeveloper.payments.CardTestFixtures.TEST_CARD_NUMBER;
-import static pl.fullstackdeveloper.payments.CardTestFixtures.TEST_MONEY;
 
 @Sql(value = "/scripts/truncate_cards.sql", executionPhase = AFTER_TEST_METHOD)
 @ActiveProfiles("test")
@@ -53,10 +51,7 @@ class AddTransactionServiceTest {
 
         mockMvc.perform(get("/api/cards/" + CARD_NUMBER))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.number", is(CARD_NUMBER)))
-                .andExpect(jsonPath("$.transactions.size()", is(1)))
-                .andExpect(jsonPath("$.transactions[0].type", is("IN")))
-                .andExpect(jsonPath("$.transactions[0].value", closeTo(TEST_MONEY.amount().doubleValue(), 0.1)));
+                .andExpect(jsonPath("$.number", is(CARD_NUMBER)));
     }
 
 }

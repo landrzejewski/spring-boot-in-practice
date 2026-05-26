@@ -23,8 +23,12 @@ class ArchitectureTest {
                 .check(classes);*/
 
         layeredArchitecture().consideringAllDependencies()
-                .layer("Adapters").definedBy("pl.fullstackdeveloper.payments.adapters..")
-                .layer("Application").definedBy("pl.fullstackdeveloper.payments.application..")
+                .layer("Adapters").definedBy(
+                        "pl.fullstackdeveloper.payments.adapters..",
+                        "pl.fullstackdeveloper.payments.input..")
+                .layer("Application").definedBy(
+                        "pl.fullstackdeveloper.payments.application..",
+                        "pl.fullstackdeveloper.payments.output..")
                 .layer("Domain").definedBy("pl.fullstackdeveloper.payments.domain..")
 
                 .whereLayer("Adapters")
