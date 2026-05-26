@@ -23,7 +23,9 @@ class ArchitectureTest {
                 .check(classes);*/
 
         layeredArchitecture().consideringAllDependencies()
-                .layer("Adapters").definedBy("pl.fullstackdeveloper.payments.adapters..")
+                .layer("Adapters").definedBy(
+                        "pl.fullstackdeveloper.payments.adapters..",
+                        "pl.fullstackdeveloper.orders.adapters..")
                 .layer("Application").definedBy("pl.fullstackdeveloper.payments.application..")
                 .layer("Domain").definedBy("pl.fullstackdeveloper.payments.domain..")
 
