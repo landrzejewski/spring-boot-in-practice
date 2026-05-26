@@ -1,0 +1,68 @@
+### Saga demo — happy path (amount <= 1000, saga skończy się COMPLETED)
+POST http://localhost:8080/orders
+Content-Type: application/json
+
+{
+  "productId": "P1",
+  "quantity": 2,
+  "amount": 500,
+  "accountId": "A1",
+  "address": "ul. Testowa 1"
+}
+
+> {%
+client.global.set("happySagaId", response.body.sagaId);
+%}
+
+### Stan sagi z happy path (uruchom po ~1s — saga jest asynchroniczna)
+GET http://localhost:8080/orders/{{happySagaId}}
+
+### Saga demo — ścieżka kompensacji (amount > 1000 ⇒ PaymentService Failure ⇒ ReleaseInventory)
+POST http://localhost:8080/orders
+Content-Type: application/json
+
+{
+  "productId": "P1",
+  "quantity": 2,
+  "amount": 5000,
+  "accountId": "A1",
+  "address": "ul. Testowa 1"
+}
+
+> {%
+client.global.set("failSagaId", response.body.sagaId);
+%}
+
+### Stan sagi po kompensacji (status: COMPENSATED, completedSteps: [])
+GET http://localhost:8080/orders/{{failSagaId}}
+
+### Granica — amount dokładnie 1000 (przejdzie, FAIL_THRESHOLD to "ostro większe")
+POST http://localhost:8080/orders
+Content-Type: application/json
+
+{
+  "productId": "P2",
+  "quantity": 1,
+  "amount": 1000,
+  "accountId": "A2",
+  "address": "ul. Brzegowa 7"
+}
+
+### Granica — amount 1000.01 (już failuje, kompensacja)
+POST http://localhost:8080/orders
+Content-Type: application/json
+
+{
+  "productId": "P2",
+  "quantity": 1,
+  "amount": 1000.01,
+  "accountId": "A2",
+  "address": "ul. Brzegowa 7"
+}
+
+### Pobranie nieistniejącej sagi (404)
+GET http://localhost:8080/orders/00000000-0000-0000-0000-000000000000
+
+### H2 console (otwórz w przeglądarce) — http://localhost:8080/h2-console
+### JDBC URL podejrzyj w logach startu aplikacji: "Database available at 'jdbc:h2:mem:...'"
+### Tabele: SAGA_INSTANCE, SAGA_COMPLETED_STEPS

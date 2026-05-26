@@ -1,13 +1,13 @@
-package pl.fullstackdeveloper;
+package pl.training.sagademo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Application {
+public class SagaDemoApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(SagaDemoApplication.class, args);
     }
 
 }
