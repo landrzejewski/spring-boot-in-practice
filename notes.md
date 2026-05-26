@@ -31,7 +31,8 @@ https://leanpub.com/maws
 https://github.com/odrotbohm/spring-modulith-deep-dive
 https://leanpub.com/get-your-hands-dirty-on-clean-architecture
 https://reflectoring.io/book/
-
+Software Architecture: The Hard Parts: Modern Tradeoff Analysis for Distributed Architectures
+Fundamentals of Software Architecture: A Modern Engineering Approach
 
 Proxy/AOP
 https://refactoring.guru/design-patterns/proxy
