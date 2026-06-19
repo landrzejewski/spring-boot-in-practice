@@ -7,12 +7,12 @@ import pl.fullstackdeveloper.payments.CardNumber;
 import java.util.Random;
 
 @Adapter
-final class RandomCardNumberGenerator implements CardNumberGenerator {
+public final class RandomCardNumberGenerator implements CardNumberGenerator {
 
     private final Random random = new Random();
     private final int length;
 
-    RandomCardNumberGenerator(@Value("${card-number-length}") final int length) {
+    public RandomCardNumberGenerator(@Value("${card-number-length}") final int length) {
         this.length = length;
     }
 
