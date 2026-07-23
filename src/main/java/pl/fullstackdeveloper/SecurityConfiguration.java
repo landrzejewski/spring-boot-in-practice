@@ -3,34 +3,21 @@ package pl.fullstackdeveloper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.ProviderManager;
-import org.springframework.security.authorization.AuthorizationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
-import org.springframework.security.provisioning.JdbcUserDetailsManager;
-import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.jaasapi.JaasApiIntegrationFilter;
 import org.springframework.security.web.servlet.util.matcher.PathPatternRequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import pl.fullstackdeveloper.security.CustomAuthenticationEntryPoint;
 import pl.fullstackdeveloper.security.TimeBasedAuthorizationManager;
+import pl.fullstackdeveloper.security.apikey.ApiKeyAuthentication;
 import pl.fullstackdeveloper.security.jwt.JwtAuthentication;
-import pl.fullstackdeveloper.security.jwt.JwtAuthenticationFilter;
+import pl.fullstackdeveloper.security.GenericAuthenticationFilter;
 
-import javax.sql.DataSource;
 import java.util.List;
 
 import static org.springframework.security.config.Customizer.withDefaults;
@@ -104,9 +91,11 @@ public class SecurityConfiguration implements WebMvcConfigurer {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity, AuthenticationConfiguration authenticationConfiguration) {
-        var jwtAuthenticationFilter = new JwtAuthenticationFilter(authenticationConfiguration, "bearer", JwtAuthentication::new);
+        var jwtAuthenticationFilter = new GenericAuthenticationFilter(authenticationConfiguration, "bearer", JwtAuthentication::new);
+        var apiKeyAuthenticationFilter = new GenericAuthenticationFilter(authenticationConfiguration, "API_KEY", ApiKeyAuthentication::new);
         return httpSecurity
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(apiKeyAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .csrf(config -> config.ignoringRequestMatchers("/api/**"))
                 .cors(config -> config.configurationSource(_ -> corsConfiguration()))
                 .httpBasic(withDefaults())
