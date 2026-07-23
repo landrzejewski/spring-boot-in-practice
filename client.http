@@ -1,7 +1,7 @@
 POST http://localhost:8080/api/cards
 Accept: application/json
 Content-Type: application/json
-Authorization: Basic YWRtaW46YWRtaW4=
+Authorization: Basic amFuOjEyMw==
 
 {
   "currencyCode": "PLN"

@@ -2,6 +2,7 @@ package pl.fullstackdeveloper;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authorization.AuthorizationManager;
@@ -80,5 +81,30 @@ public class SecurityConfiguration {
         manager.setAuthoritiesByUsernameQuery("select username, authority from authorities where username = ?");
         return manager;
     }*/
+
+    @Bean
+    public CorsConfiguration corsConfiguration() {
+        var corsConfig = new CorsConfiguration();
+        corsConfig.setAllowedOrigins(List.of("https://training.pl"));
+        corsConfig.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));
+        corsConfig.setAllowedHeaders(List.of("*"));
+        corsConfig.setAllowCredentials(true);
+        return corsConfig;
+    }
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) {
+        return httpSecurity
+                .csrf(config -> config.ignoringRequestMatchers("/api/**"))
+                .cors(config -> config.configurationSource(_ -> corsConfiguration()))
+                .httpBasic(withDefaults())
+                .formLogin(withDefaults())
+                .authorizeHttpRequests(config -> config
+                        .requestMatchers("/login.html").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/actuator/**").authenticated()
+                        .anyRequest().hasRole("ADMIN")
+                )
+                .build();
+    }
 
 }
