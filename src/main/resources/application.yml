@@ -11,9 +11,9 @@ spring:
       maximum-pool-size: 5
   messages:
     basename: exceptions
-  security:
-    user:
-      name: admin
-      password: $2a$10$g28wukm5E3PjIMPR1mTgfek8GOU2V/hTM4MmZBp.Vx30WsrpAcY8W
-      roles: ADMIN
+#  security:
+#    user:
+#      name: admin
+#      password: 123
+#      roles: ADMIN
 card-number-length: 16
