@@ -21,7 +21,7 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 
-    @Autowired
+    /*@Autowired
     public void providers(AuthenticationManagerBuilder managerBuilder, UserDetailsService userDetailsService, PasswordEncoder passwordEncoder,
                           JwtService jwtService, @Value("${api-keys}") Set<String> apiKeys) {
         var daoAuthenticationProvider = new DaoAuthenticationProvider(userDetailsService);
@@ -29,6 +29,6 @@ public class Application {
         managerBuilder.authenticationProvider(daoAuthenticationProvider);
         managerBuilder.authenticationProvider(new JwtAuthenticationProvider(jwtService));
         managerBuilder.authenticationProvider(new ApiKeyAuthenticationProvider(apiKeys));
-    }
+    }*/
 
 }

@@ -41,7 +41,8 @@ Accept: application/json
 Content-Type: application/json
 #Authorization: Basic amFuOjEyMw==
 #Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo4MDAwIiwidXNlciI6ImphbiIsInJvbGVzIjpbIlJPTEVfQURNSU4iXSwiZXhwIjoxNzg0ODA0Njk0fQ.6wQ3Si-42ff340XU1jLJbk_VTXto_797bCDgvYeozKE
-Authorization: API_KEY 00001
+#Authorization: API_KEY 00001
+Authorization: bearer {{token}}
 
 ###
 GET http://localhost:8080/api/cards/{{number}}

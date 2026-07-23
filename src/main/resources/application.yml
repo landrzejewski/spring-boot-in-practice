@@ -11,6 +11,11 @@ spring:
       maximum-pool-size: 5
   messages:
     basename: exceptions
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8100/realms/training
 #  security:
 #    user:
 #      name: admin

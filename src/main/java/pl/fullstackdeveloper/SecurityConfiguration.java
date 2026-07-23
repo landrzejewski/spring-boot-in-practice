@@ -2,21 +2,18 @@ package pl.fullstackdeveloper;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
-import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
+import org.springframework.security.web.DefaultSecurityFilterChain;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.servlet.util.matcher.PathPatternRequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import pl.fullstackdeveloper.security.TimeBasedAuthorizationManager;
-import pl.fullstackdeveloper.security.apikey.ApiKeyAuthentication;
-import pl.fullstackdeveloper.security.jwt.JwtAuthentication;
-import pl.fullstackdeveloper.security.GenericAuthenticationFilter;
+import pl.fullstackdeveloper.security.oauth2.KeycloakAuthoritiesConverter;
 
 import java.util.List;
 
@@ -89,7 +86,7 @@ public class SecurityConfiguration implements WebMvcConfigurer {
         return corsConfig;
     }
 
-    @Bean
+    /*@Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity, AuthenticationConfiguration authenticationConfiguration) {
         var jwtAuthenticationFilter = new GenericAuthenticationFilter(authenticationConfiguration, "bearer", JwtAuthentication::new);
         var apiKeyAuthenticationFilter = new GenericAuthenticationFilter(authenticationConfiguration, "API_KEY", ApiKeyAuthentication::new);
@@ -99,10 +96,10 @@ public class SecurityConfiguration implements WebMvcConfigurer {
                 .csrf(config -> config.ignoringRequestMatchers("/api/**"))
                 .cors(config -> config.configurationSource(_ -> corsConfiguration()))
                 .httpBasic(withDefaults())
-                /*.httpBasic(config -> config
+                *//*.httpBasic(config -> config
                         .realmName("Training")
                         .authenticationEntryPoint(new CustomAuthenticationEntryPoint())
-                )*/
+                )*//*
                 //.formLogin(withDefaults())
                 .formLogin(config -> config
                         .loginPage("/login.html")
@@ -124,6 +121,25 @@ public class SecurityConfiguration implements WebMvcConfigurer {
                         .invalidateHttpSession(true)
                 )
                 .build();
+    }*/
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) {
+        return httpSecurity
+                .csrf(config -> config.ignoringRequestMatchers("/api/**"))
+                .cors(config -> config.configurationSource(_ -> corsConfiguration()))
+                .oauth2ResourceServer(config -> config.jwt(withDefaults()))
+                .authorizeHttpRequests(config -> config
+                        .anyRequest().hasRole("ADMIN")
+                )
+                .build();
+    }
+
+    @Bean
+    public JwtAuthenticationConverter jwtConfigurer() {
+        var jwtConverter = new JwtAuthenticationConverter();
+        jwtConverter.setJwtGrantedAuthoritiesConverter(new KeycloakAuthoritiesConverter());
+        return jwtConverter;
     }
 
     @Bean
