@@ -18,16 +18,23 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.servlet.util.matcher.PathPatternRequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import pl.fullstackdeveloper.security.CustomAuthenticationEntryPoint;
+import pl.fullstackdeveloper.security.TimeBasedAuthorizationManager;
+import pl.fullstackdeveloper.security.jwt.JwtAuthenticationFilter;
 
 import javax.sql.DataSource;
 import java.util.List;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
-@EnableWebSecurity(debug = true)
+//@EnableWebSecurity(debug = true)
 @Configuration
-public class SecurityConfiguration {
+public class SecurityConfiguration implements WebMvcConfigurer {
 
     /*AuthenticationManager authenticationManager; // Interfejs/kontrakt dla procesu uwierzytelnienia użytkownika
         ProviderManager providerManager; // Podstawowa implementacja AuthenticationManager, deleguje proces uwierzytelnienia do jednego z obiektów AuthenticationProvider
@@ -93,18 +100,49 @@ public class SecurityConfiguration {
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) {
+    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity, JwtAuthenticationFilter jwtAuthenticationFilter) {
         return httpSecurity
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .csrf(config -> config.ignoringRequestMatchers("/api/**"))
                 .cors(config -> config.configurationSource(_ -> corsConfiguration()))
                 .httpBasic(withDefaults())
-                .formLogin(withDefaults())
+                /*.httpBasic(config -> config
+                        .realmName("Training")
+                        .authenticationEntryPoint(new CustomAuthenticationEntryPoint())
+                )*/
+                //.formLogin(withDefaults())
+                .formLogin(config -> config
+                        .loginPage("/login.html")
+                        .defaultSuccessUrl("/index.html")
+                        .usernameParameter("username")
+                        .passwordParameter("password")
+                        //.failureHandler((request, response, exception) -> {})
+                        //.successHandler((request, response, authentication) -> {})
+                )
                 .authorizeHttpRequests(config -> config
                         .requestMatchers("/login.html").permitAll()
                         .requestMatchers(HttpMethod.GET, "/actuator/**").authenticated()
-                        .anyRequest().hasRole("ADMIN")
+                        //.anyRequest().hasRole("ADMIN")
+                        .anyRequest().access(new TimeBasedAuthorizationManager())
+                )
+                .logout(config -> config
+                        .logoutRequestMatcher(requestMatcherBuilder().matcher("/logout.html"))
+                        .logoutSuccessUrl("/login.html")
+                        .invalidateHttpSession(true)
                 )
                 .build();
+    }
+
+    @Bean
+    public PathPatternRequestMatcher.Builder requestMatcherBuilder() {
+        return PathPatternRequestMatcher.withDefaults();
+    }
+
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/login.html").setViewName("login-form");
+        registry.addViewController("/index.html").setViewName("index");
+        registry.addViewController("/").setViewName("index");
     }
 
 }

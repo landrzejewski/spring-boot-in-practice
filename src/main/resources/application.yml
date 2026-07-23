@@ -17,3 +17,4 @@ spring:
 #      password: 123
 #      roles: ADMIN
 card-number-length: 16
+secret: sdfewrtfnmuiretynui
