@@ -18,3 +18,4 @@ spring:
 #      roles: ADMIN
 card-number-length: 16
 secret: sdfewrtfnmuiretynui
+api-keys: 00001,00002
