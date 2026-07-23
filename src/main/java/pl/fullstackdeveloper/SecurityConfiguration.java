@@ -14,10 +14,12 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 
+import javax.sql.DataSource;
 import java.util.List;
 
 import static org.springframework.security.config.Customizer.withDefaults;
@@ -55,22 +57,28 @@ public class SecurityConfiguration {
         return new BCryptPasswordEncoder();
     }
 
-    public UserDetails defaultUser() {
+    /*public UserDetails defaultUser() {
         return User.withUsername("jan")
                 .password(passwordEncoder().encode("123"))
                 .roles("ADMIN")
                 .build();
-    }
+    }*/
 
-    @Bean
-    public UserDetailsService userDetailsService() {
-        /*return username -> {
+   /* @Bean
+    public UserDetailsService userDetailsService(DataSource dataSource) {
+        *//*return username -> {
             if (!username.equalsIgnoreCase("jan")) {
                 throw new UsernameNotFoundException("User not found");
             }
             return defaultUser();
-        };*/
-        return new InMemoryUserDetailsManager(defaultUser());
-    }
+        };*//*
+
+        // return new InMemoryUserDetailsManager(defaultUser());
+
+        var manager = new JdbcUserDetailsManager(dataSource);
+        manager.setUsersByUsernameQuery("select username, password, enabled from users where username = ?");
+        manager.setAuthoritiesByUsernameQuery("select username, authority from authorities where username = ?");
+        return manager;
+    }*/
 
 }
