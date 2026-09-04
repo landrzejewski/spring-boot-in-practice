@@ -20,9 +20,11 @@
     <modules>
         <module>common</module>
         <module>payments</module>
+        <module>payments-service</module>
         <module>orders</module>
-        <module>app</module>
+        <module>orders-service</module>
         <module>config-server</module>
+        <module>discovery-server</module>
     </modules>
 
 </project>
